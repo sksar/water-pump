@@ -10,20 +10,20 @@
     let dialElement = $state();
     let rotation = $derived((value / max) * 360);
 
-    let isDragging = $state(false);
+    let dragging = $state(false);
 
     function handleStart(e) {
         if (e.type === 'touchstart') e?.preventDefault();
-        isDragging = true;
+        dragging = true;
         update(e);
     }
 
     function handleEnd() {
-        isDragging = false;
+        dragging = false;
     }
 
     function handleMove(e) {
-        if (!isDragging) return;
+        if (!dragging) return;
         update(e);
     }
 
@@ -40,10 +40,13 @@
 
         let angle = Math.atan2(dy, dx) * (180 / Math.PI);
         angle = (angle + 90 + 360) % 360; // Offset by 90
-        const n = Math.round((angle / 360) * max);
-        if (n !== value) tickSound();
-        value = n;
+        value = Math.round((angle / 360) * max);
     }
+
+    $effect(() => {
+        value;
+        tickSound();
+    });
 </script>
 
 <svelte:window onmousemove={handleMove} onmouseup={handleEnd} ontouchmove={handleMove} ontouchend={handleEnd}/>
@@ -55,7 +58,7 @@
      ontouchstart={handleStart}
 >
     <!-- Outer Plate: Braun-style off-white -->
-    <div class="absolute inset-0 rounded-full bg-[#E0E0E0] shadow-[0_12px_24px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.8),inset_0_-2px_5px_rgba(0,0,0,0.1)] border border-[#CBCBCB]"></div>
+    <div id="outer-plate"></div>
 
     <!-- Ticks -->
     <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full p-6">
@@ -73,8 +76,7 @@
     </svg>
 
     <!-- Main Knob -->
-    <div
-        class="overflow-hidden relative w-40 h-40 rounded-full bg-[#EEEEEE] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3),0_8px_16px_rgba(0,0,0,0.1),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(0,0,0,0.15)]">
+    <div id="knob">
 
         <!-- Ribs (Rotating) -->
         <div style="transform: rotate({rotation}deg)" class="rotating-area opacity-15">
@@ -98,11 +100,11 @@
     </div>
 
     <!-- Value -->
-    <div class="absolute pointer-events-none flex flex-col items-center z-20">
-        <span class="text-3xl font-medium text-[#222] tracking-tighter tabular-nums">
+    <div class="absolute pointer-events-none flex flex-col items-center z-20 -mt-1">
+        <span class="text-[36px] font-medium text-[#222] tracking-tighter tabular-nums">
             {value}
         </span>
-        <span class="text-[9px] uppercase tracking-[0.2em] text-[#AAA] font-bold -mt-1">
+        <span class="text-[9px] uppercase tracking-[0.2em] text-[#AAA] font-bold -mt-1.5">
             min {active ? "left" : ""}
         </span>
     </div>
@@ -114,5 +116,15 @@
     .rotating-area {
         @apply absolute inset-0 transition-transform duration-200;
         @apply transition-transform duration-200;
+    }
+
+    #outer-plate {
+        @apply absolute inset-0 rounded-full bg-[#E0E0E0] border border-[#CBCBCB];
+        @apply shadow-[0_12px_24px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.8),inset_0_-2px_5px_rgba(0,0,0,0.1)];
+    }
+
+    #knob {
+        @apply overflow-hidden relative w-40 h-40 rounded-full bg-[#EEEEEE];
+        @apply shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3),0_8px_16px_rgba(0,0,0,0.1),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(0,0,0,0.15)];
     }
 </style>

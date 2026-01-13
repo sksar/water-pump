@@ -1,19 +1,18 @@
 let audioCtx;
 
 function getAudioContext() {
-    if (typeof window === 'undefined') return null;
-    if (!audioCtx) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioContextClass) audioCtx = new AudioContextClass();
-    }
+    if (!audioCtx) audioCtx = new window.AudioContext();
     return audioCtx;
 }
 
 /**
  * Simulates a mechanical, metallic click sound.
  */
-export function metalSound(ctx, time, volume = 1, pitch = 1) {
-    if (!ctx) return;
+export function metalSound(volume = 1, pitch = 1) {
+
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') ctx.resume();
+    const time = ctx.currentTime;
 
     // 1. High-frequency noise burst (the "snap")
     const noiseBuffer = ctx.createBuffer(1, ctx.sampleRate * 0.05, ctx.sampleRate);
@@ -71,15 +70,9 @@ export function metalSound(ctx, time, volume = 1, pitch = 1) {
 
 
 export function buttonSound() {
-    const ctx = getAudioContext();
-    if (ctx) {
-        if (ctx.state === 'suspended') ctx.resume();
-        metalSound(ctx, ctx.currentTime, 1.0, 0.8);
-    }
+    metalSound(1.0, 0.8);
 }
 
 export function tickSound() {
-    if (audioCtx && audioCtx.state === 'running') {
-        metalSound(audioCtx, audioCtx.currentTime, 0.4, 1.5);
-    }
+    metalSound(0.4, 1.5);
 }
