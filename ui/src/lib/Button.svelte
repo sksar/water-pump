@@ -76,20 +76,14 @@
     </div>
     
     <!-- Label -->
-    {#if label}
-        <span class="text-[10px] font-black tracking-[0.3em] text-[#333] uppercase select-none">
-            {label}
-        </span>
-    {/if}
+    <span class="text-[12px] font-bold tracking-[0.15em] text-[#666] uppercase select-none">
+        {label}
+    </span>
 </div>
 
 <style>
     button {
         -webkit-tap-highlight-color: transparent;
         cursor: pointer;
-    }
-    
-    button:disabled {
-        cursor: not-allowed;
     }
 </style>

@@ -14,9 +14,6 @@
         else minutes = 0;
     });
 
-    $inspect($pump);
-    $inspect(active);
-
     function stop() {
         rpc("stop");
         buttonSound();
@@ -46,19 +43,11 @@
         <Dial bind:value={minutes} max={30} {active} />
 
         <!-- Push Buttons -->
-        <div class="flex items-center gap-10">
-            <Button 
-                label="Start" 
-                variant="green" 
-                onclick={start}
-                disabled={active || minutes === 0}
-            />
-            <Button 
-                label="Stop" 
-                variant="red" 
-                onclick={stop}
-            />
+        <div class="flex items-center gap-20">
+            <Button label="Start" variant="green" onclick={start} disabled={active || minutes === 0} />
+            <Button label="Stop" variant="red" onclick={stop} />
         </div>
+
     </section>
 </main>
 
