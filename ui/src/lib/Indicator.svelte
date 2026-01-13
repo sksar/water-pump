@@ -22,7 +22,7 @@
     <!-- Indicator Text -->
     <div
         class="text-[10px] uppercase tracking-[0.15em] font-bold {active ? 'text-[#FF7F00]' : 'text-[#999]'} transition-colors duration-300">
-        {active ? 'Pumping' : 'Idle'}
+        {active ? 'Pumping' : 'Ready'}
     </div>
 </section>
 
