@@ -17,9 +17,7 @@ jobs:
 
       - name: Install Mongoose OS CLI
         run: |
-          sudo add-apt-repository ppa:mongoose-os/mos
-          sudo apt-get update
-          sudo apt-get install mos
+          curl -fsSL https://mongoose-os.com/downloads/mos/install.sh | /bin/bash
 
       - name: Build Firmware
         run: |
