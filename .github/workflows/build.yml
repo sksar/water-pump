@@ -5,6 +5,8 @@ on:
   push:
     branches: [ main ]
 
+env:
+  NO_PPA: 1
 
 jobs:
 
