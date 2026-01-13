@@ -17,3 +17,4 @@ void notify(const char *fmt, ...) {
     // Send
     LOG(LL_INFO, ("Notification sent: %s", s));
 }
+

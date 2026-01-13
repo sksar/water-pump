@@ -6,6 +6,7 @@
 //----------------------------------------------------------------
 
 #include "notification/notify.h"
+#include "notification/led.h"
 
 #include "core/relays.h"
 #include "core/pump.h"
@@ -23,6 +24,7 @@ enum mgos_app_init_result mgos_app_init(void){
 	init_pump();
 	init_cron();
 	init_rpc();
+	init_led();
 
 	return MGOS_APP_INIT_SUCCESS;
 }

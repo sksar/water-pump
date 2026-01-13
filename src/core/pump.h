@@ -22,13 +22,15 @@ void pump_start(int minutes) {
     if (minutes > 60) minutes = 60;
     ttl = minutes * 60;
     push_start_button();
-	LOG(LL_INFO, ("Pump started for %d minutes", minutes));
+    led_on();
     notify("Pump started for %d minutes", minutes);
+	LOG(LL_INFO, ("Pump started for %d minutes", minutes));
 }
 
 void pump_stop() {
     ttl = 0;
     push_stop_button();
+    led_off();
 	LOG(LL_INFO, ("Pump stopped"));
 }
 
