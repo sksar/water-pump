@@ -25,6 +25,6 @@ jobs:
 
       - name: Build Firmware
         run: |
-          mos build
+          mos build --local
 
 
