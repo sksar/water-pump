@@ -28,7 +28,7 @@ static void rpc_stop(
     struct mg_rpc_frame_info *fi,
     struct mg_str a)
 {
-    pump_stop_and_notify();
+    pump_stop();
     mg_rpc_send_responsef(ri, "OK");
 }
 
