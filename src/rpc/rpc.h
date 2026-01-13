@@ -20,6 +20,8 @@ static void rpc_start(
     mg_rpc_send_responsef(ri, "OK");
 }
 
+
+
 // Stop ---------------------------------------------------------------------------
 static void rpc_stop(
     struct mg_rpc_request_info *ri, void *cb_arg,
@@ -29,6 +31,7 @@ static void rpc_stop(
     pump_stop_and_notify();
     mg_rpc_send_responsef(ri, "OK");
 }
+
 
 // State ---------------------------------------------------------------------------
 static void rpc_state(
@@ -40,8 +43,8 @@ static void rpc_state(
 }
 
 
-// Init ---------------------------------------------------------------------------
 
+// Init ---------------------------------------------------------------------------
 void init_rpc() {
     mg_rpc_add_handler(mgos_rpc_get_global(), "Start", "{minutes: %d}", rpc_start, NULL);
     mg_rpc_add_handler(mgos_rpc_get_global(), "Stop", "{}", rpc_stop, NULL);
