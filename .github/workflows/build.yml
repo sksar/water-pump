@@ -18,6 +18,9 @@ jobs:
       - name: Install Mongoose OS CLI
         run: |
           curl -fsSL https://mongoose-os.com/downloads/mos/install.sh | /bin/bash
+
+      - name: Debug Step
+        run: |
           ls -la ~/.mos/bin/
           echo "$HOME/.mos/bin"
 
