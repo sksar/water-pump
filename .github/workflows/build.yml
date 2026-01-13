@@ -27,4 +27,9 @@ jobs:
         run: |
           mos build --local
 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: firmware
+          path: build/fw.zip
 
