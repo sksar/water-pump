@@ -23,7 +23,7 @@ void pump_start(int minutes) {
     ttl = minutes * 60;
     push_start_button();
     led_on();
-    notify("Pump started for %d minutes", minutes);
+    notify("🟢 Pump started for %d minutes", minutes);
 	LOG(LL_INFO, ("Pump started for %d minutes", minutes));
 }
 
@@ -36,7 +36,7 @@ void pump_stop() {
 
 void pump_stop_and_notify() {
     pump_stop();
-    notify("🔴Pump Stopped");
+    notify("🔴 Pump Stopped");
 }
 
 
