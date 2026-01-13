@@ -11,16 +11,16 @@ function poll() {
 
 // ----------------------------------------------------------------------------------
 
-const DEV_URL = "http://water-pump.local"
-const PROD_URL = "/";
+const DEV_URL = "water-pump.local"
+const PROD_URL = window.location.host;
 const WS_URL = import.meta.env.DEV ? DEV_URL : PROD_URL;
 
 const et = new EventTarget();
-let ws = new WebSocket(null);
+let ws;
 
 connect();
 function connect() {
-    ws = new WebSocket(`${WS_URL}/rpc`);
+    ws = new WebSocket(`ws://${WS_URL}/rpc`);
     ws.addEventListener("open", () => {
         console.log("Connected to pump via websocket");
     });
@@ -33,7 +33,7 @@ function connect() {
 
 export function rpc(name, data) {
     return new Promise((resolve, reject) => {
-        if (ws.readyState !== WebSocket.OPEN) return reject();
+        if (ws && ws.readyState !== WebSocket.OPEN) return reject();
         const c = new AbortController();
         et.addEventListener("msg", ({ detail }) => {
             if (detail?.id !== name) return;
