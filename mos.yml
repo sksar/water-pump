@@ -1,0 +1,46 @@
+author: sarinfocom
+description: water-pump
+version: 1.0
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+platform: esp8266
+
+# Optional. List of tags for online search.
+tags:
+  - c
+
+# List of files / directories with C sources. No slashes at the end of dir names.
+sources:
+  - src
+
+# List of dirs. Files from these dirs will be copied to the device filesystem
+filesystem:
+  - fs
+
+config_schema:
+  - ["dns_sd.enable", true]
+  - ["dns_sd.host_name", "water-pump"]
+  - ["http.extra_headers", "s", "Access-Control-Allow-Origin: *", { title: "Extra headers" }]
+  - ["app", "o", { title: "Application settings" }]
+  - ["app.cron_start.enable", "b", false, { title: "Start pump on cron job" }]
+  - ["app.cron_start.expr", "s", "0 0 5 * * *", { title: "Cron expression" }]
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
+  - origin: https://github.com/mongoose-os-libs/rpc-common
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/http-server
+  - origin: https://github.com/mongoose-os-libs/wifi
+  - origin: https://github.com/mongoose-os-libs/dash
+  - origin: https://github.com/mongoose-os-libs/sntp
+  - origin: https://github.com/mongoose-os-libs/dns-sd
+  - origin: https://github.com/mongoose-os-libs/cron
+  - origin: https://github.com/mongoose-os-libs/pwm
+
+# Used by the mos tool to catch mos binaries incompatible with this file format
+manifest_version: 2017-09-29
