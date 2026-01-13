@@ -18,7 +18,7 @@ jobs:
       - name: Install Mongoose OS CLI
         run: |
           curl -fsSL https://mongoose-os.com/downloads/mos/install.sh | /bin/bash
-          echo "$HOME/.mos/bin" >> $GITHUB_PATH
+          ls
 
       - name: Build Firmware
         run: |
