@@ -5,6 +5,7 @@
     import Dial from "$lib/Dial.svelte";
     import Button from "$lib/Button.svelte";
     import Indicator from "$lib/Indicator.svelte";
+    import {goto} from "$app/navigation";
 
     let minutes = $state(0);
     let active = $derived($pump?.['ttl'] > 0);
@@ -30,7 +31,7 @@
     <!-- Header Area -->
     <header class="w-full flex justify-between items-start">
         <h1 class="text-[13px] font-bold tracking-widest text-[#222] uppercase">Water Pump</h1>
-        <p class="text-[10px] tracking-widest text-[#888] uppercase mt-0.5">Control Panel</p>
+        <button class="text-[10px] tracking-widest text-[#888] uppercase mt-0.5" onclick={() => goto('#/settings')}>Settings</button>
     </header>
 
     <!-- Main Control Area -->
