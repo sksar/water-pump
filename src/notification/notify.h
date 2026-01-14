@@ -6,7 +6,9 @@
 #include <stdarg.h>
 #include "mgos_telegram.h"
 
-
+//----------------------------------------------------------------
+// Telegram Send Message
+//----------------------------------------------------------------
 
 void send_telegram_message(const char *msg) {
     int32_t chat_id = mgos_sys_config_get_app_telegram_chat_id();
@@ -14,7 +16,9 @@ void send_telegram_message(const char *msg) {
     mgos_telegram_send_message(chat_id, msg);
 }
 
-
+//----------------------------------------------------------------
+// API
+//----------------------------------------------------------------
 
 void notify(const char *fmt, ...) {
 
