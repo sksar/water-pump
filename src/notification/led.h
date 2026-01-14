@@ -11,7 +11,7 @@ void init_led() {
 }
 
 void led_on() {
-    mgos_gpio_blink(led_pin, 100, 100);
+    mgos_gpio_blink(led_pin, 500, 500);
 }
 
 void led_off() {

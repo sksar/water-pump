@@ -16,7 +16,7 @@ void cron_stop() {
 void cron_start() {
     if (pump_running()) return;
     if (!mgos_sys_config_get_app_cron_start_enable()) return;
-    pump_start(5);
+    pump_start(mgos_sys_config_get_app_cron_start_duration());
 }
 
 //----------------------------------------------------------------
@@ -25,9 +25,9 @@ void cron_start() {
 
 
 void init_cron() {
-    // Stop Cron
+    // Auto Stop
     mgos_cron_add("0 */15 * * * *", cron_stop, NULL);
 
-    // Start Cron
+    // Auto Start
     mgos_cron_add(mgos_sys_config_get_app_cron_start_expr(), cron_start, NULL);
 }

@@ -21,12 +21,20 @@ filesystem:
   - fs
 
 config_schema:
-  - ["dns_sd.enable", true]
-  - ["dns_sd.host_name", "water-pump"]
-  - ["http.extra_headers", "s", "Access-Control-Allow-Origin: *", { title: "Extra headers" }]
-  - ["app", "o", { title: "Application settings" }]
-  - ["app.cron_start.enable", "b", false, { title: "Start pump on cron job" }]
-  - ["app.cron_start.expr", "s", "0 0 5 * * *", { title: "Cron expression" }]
+  - [ "dns_sd.enable", true ]
+  - [ "dns_sd.host_name", "water-pump" ]
+  - [ "http.extra_headers", "s", "Access-Control-Allow-Origin: *", { title: "Extra headers" } ]
+  - [ "http.hidden_files", "s", "conf*", { title: "Hidden files" } ]
+  - [ "sys.tz_spec", "IST-5:30" ]
+
+  - [ "telegram.enable", false ]
+  - [ "telegram.echo_bot", false ]
+  - [ "telegram.token", "" ]
+
+  - [ "app.telegram_chat_id", "s", "", { title: "Telegram chat ID" } ]
+  - [ "app.cron_start.enable", "b", false, { title: "Start pump on cron job" } ]
+  - [ "app.cron_start.expr", "s", "0 0 5 * * *", { title: "Cron expression" } ]
+  - [ "app.cron_start.duration", "i", 5, { title: "Duration in minutes" } ]
 
 libs:
   - origin: https://github.com/mongoose-os-libs/boards
@@ -41,6 +49,8 @@ libs:
   - origin: https://github.com/mongoose-os-libs/dns-sd
   - origin: https://github.com/mongoose-os-libs/cron
   - origin: https://github.com/mongoose-os-libs/pwm
+  - location: https://github.com/kotelnikov/mgos_telegram
+    name: telegram
 
 # Used by the mos tool to catch mos binaries incompatible with this file format
 manifest_version: 2017-09-29
