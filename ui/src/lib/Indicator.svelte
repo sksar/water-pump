@@ -1,6 +1,7 @@
 <script>
     let {
-        active = $bindable(false)
+        active = $bindable(false),
+        ttl = $bindable(0)
     } = $props();
 </script>
 
