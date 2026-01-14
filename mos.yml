@@ -31,7 +31,7 @@ config_schema:
   - [ "telegram.echo_bot", false ]
   - [ "telegram.token", "" ]
 
-  - [ "app.telegram_chat_id", "s", "", { title: "Telegram chat ID" } ]
+  - [ "app.telegram_chat_id", "i", 0, { title: "Telegram chat ID" } ]
   - [ "app.cron_start.enable", "b", false, { title: "Start pump on cron job" } ]
   - [ "app.cron_start.expr", "s", "0 0 5 * * *", { title: "Cron expression" } ]
   - [ "app.cron_start.duration", "i", 5, { title: "Duration in minutes" } ]
