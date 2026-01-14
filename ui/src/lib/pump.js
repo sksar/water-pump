@@ -11,7 +11,7 @@ function poll() {
 
 // ----------------------------------------------------------------------------------
 
-const DEV_URL = "water-pump.local"
+const DEV_URL = "water-pump-2c7591.local"
 const PROD_URL = window.location.host;
 const WS_URL = import.meta.env.DEV ? DEV_URL : PROD_URL;
 
