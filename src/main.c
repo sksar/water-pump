@@ -23,6 +23,7 @@ enum mgos_app_init_result mgos_app_init(void){
 	init_relays();
 	init_pump();
 	init_cron();
+
 	init_rpc();
 	init_led();
 
