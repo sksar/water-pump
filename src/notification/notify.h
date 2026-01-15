@@ -12,6 +12,8 @@
 
 void send_telegram_message(const char *msg) {
     const char *chat_id = mgos_sys_config_get_app_telegram_chat_id();
+    if (chat_id == NULL) return;
+    if (strlen(chat_id) == 0) return;
     LOG(LL_INFO, ("Sending message to chat id: %s", chat_id));
     mgos_telegram_send_message(atoll(chat_id), msg);
 }
