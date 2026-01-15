@@ -30,6 +30,7 @@ void pump_start(int minutes) {
 void pump_stop() {
     ttl = 0;
     push_stop_button();
+    mgos_set_timer(5000, 0, push_stop_button, NULL);
     led_off();
 	LOG(LL_INFO, ("Pump stopped"));
 }
