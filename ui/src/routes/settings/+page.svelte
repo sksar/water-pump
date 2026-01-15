@@ -14,7 +14,7 @@
                 expr: "",
                 duration: 5
             },
-            telegram_chat_id: 0
+            telegram_chat_id: ""
         },
         telegram: {
             enable: false,
@@ -155,7 +155,7 @@
                         <div>
                             <label for="tg-chat-id"
                                    class="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Chat ID</label>
-                            <input type="number" id="tg-chat-id" bind:value={config.app.telegram_chat_id}/>
+                            <input type="text" id="tg-chat-id" bind:value={config.app.telegram_chat_id} placeholder="123456789"/>
                         </div>
                     </div>
                 </article>
