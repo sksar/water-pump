@@ -27,5 +27,8 @@ enum mgos_app_init_result mgos_app_init(void){
 	init_rpc();
 	init_led();
 
+	// At boot stop pump
+	pump_stop();
+
 	return MGOS_APP_INIT_SUCCESS;
 }
