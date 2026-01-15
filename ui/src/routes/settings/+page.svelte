@@ -25,7 +25,7 @@
     // Generate intervals
     const timeOptions = [];
     for (let h = 0; h < 24; h++) {
-        for (let m = 0; m < 60; m += 1) {
+        for (let m = 0; m < 60; m += 30) {
             const hh = h.toString().padStart(2, '0');
             const mm = m.toString().padStart(2, '0');
             timeOptions.push(`${hh}:${mm}`);
@@ -86,8 +86,6 @@
         const sign = offset > 0 ? "" : "-";
         return `GMT${sign}${h}:${m.toString().padStart(2, '0')}`;
     }
-
-    console.log(`Timezone: ${getPosixTz()}`);
 </script>
 
 <main class="h-screen flex flex-col overflow-scroll">
@@ -97,7 +95,7 @@
         <button class="text-[10px] tracking-widest text-[#888] uppercase mt-0.5" onclick={() => goto('/')}>Back</button>
     </header>
 
-    <section class="max-w-lg mx-auto p-8 overflow-scroll">
+    <section class="max-w-lg w-full mx-auto p-8 overflow-scroll">
         {#if loading}
             <p class="text-center text-zinc-500">Loading...</p>
         {:else}
@@ -128,8 +126,12 @@
                             <label for="auto-start-duration"
                                    class="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Duration
                                 (minutes)</label>
-                            <input type="number" id="auto-start-duration" bind:value={config.app.cron_start.duration}
-                                   min="1" max="60"/>
+                            <select id="auto-start-duration" bind:value={config.app.cron_start.duration}
+                                    class="w-full px-2 py-1 border border-zinc-300 rounded-md bg-white">
+                                {#each Array.from({length: 60}, (_, i) => i + 1) as minutes}
+                                    <option value={minutes}>{minutes} Minutes</option>
+                                {/each}
+                            </select>
                         </div>
                     </div>
                 </article>
@@ -165,10 +167,6 @@
                 >
                     {saving ? 'Saving...' : 'Save Settings'}
                 </button>
-
-                {#if import.meta.env.DEV}
-                    <pre><code>{JSON.stringify(config, null, 1)}</code></pre>
-                {/if}
             </div>
 
         {/if}
