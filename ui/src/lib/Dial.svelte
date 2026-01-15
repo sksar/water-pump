@@ -61,7 +61,7 @@
     <div id="outer-plate"></div>
 
     <!-- Ticks -->
-    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full p-6">
+    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full p-5">
         <g transform="translate(50, 50)">
             {#each Array.from({length: max}) as _, i}
                 {@const big = i % 5 === 0}
