@@ -26,7 +26,7 @@
     }
 </script>
 
-<main class="h-screen bg-[#F0F0F0] flex flex-col items-center justify-between p-8 select-none overflow-hidden">
+<main class="h-screen flex flex-col items-center justify-between p-8 select-none overflow-hidden">
 
     <!-- Header Area -->
     <header class="w-full flex justify-between items-start">

@@ -8,4 +8,5 @@
 html, body {
     @apply h-screen w-screen;
     @apply overflow-hidden;
+    @apply bg-[#F0F0F0];
 }
