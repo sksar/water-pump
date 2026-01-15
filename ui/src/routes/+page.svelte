@@ -1,11 +1,12 @@
 <script>
-    import { pump, rpc } from "$lib/pump";
-    import { buttonSound } from "$lib/sounds";
+    import {goto} from "$app/navigation";
+
+    import {pump, rpc} from "$lib/pump";
+    import {buttonSound} from "$lib/sounds";
 
     import Dial from "$lib/Dial.svelte";
     import Button from "$lib/Button.svelte";
     import Indicator from "$lib/Indicator.svelte";
-    import {goto} from "$app/navigation";
 
     let minutes = $state(0);
     let active = $derived($pump?.['ttl'] > 0);
