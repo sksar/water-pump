@@ -1,6 +1,5 @@
 name: Build Firmware
 
-
 on:
   push:
     branches: [ main ]
@@ -19,6 +18,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      #---------------------------------------------------------------------------
+
+      - name: Build Frontend
+        run: |
+          cd ui
+          npm i
+          npm run build
+
+      - name: Check Frontend Build
+        run: ls -laR fs/
+
+
+      #---------------------------------------------------------------------------
+
       - name: Install Mongoose OS CLI
         run: |
           export NO_PPA=1
@@ -29,6 +42,9 @@ jobs:
       - name: Build Firmware
         run: |
           mos build --local
+          
+
+      #---------------------------------------------------------------------------
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v5
