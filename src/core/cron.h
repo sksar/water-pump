@@ -16,6 +16,7 @@ void cron_stop() {
 }
 
 void cron_start() {
+    if (time(NULL) < 1e9) return; // sntp not synced
     LOG(LL_INFO, ("Executing cron start"));
     if (pump_running()) return;
     if (!mgos_sys_config_get_app_cron_start_enable()) return;
