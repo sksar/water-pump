@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && rm -rf ../fs/_app",
+		"build": "vite build && npm run build:minimize",
+		"build:minimize": "cd ../fs/ && rm -rf _app index.html index.html.br",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''"
 	},

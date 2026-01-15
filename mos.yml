@@ -25,6 +25,7 @@ config_schema:
   - [ "dns_sd.host_name", "water-pump-??????" ]
   - [ "http.extra_headers", "Access-Control-Allow-Origin: *" ]
   - [ "http.hidden_files", "conf*" ]
+  - [ "http.index_files", "index.html.gz"]
 
   - [ "telegram.enable", false ]
   - [ "telegram.echo_bot", false ]

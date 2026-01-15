@@ -5,7 +5,8 @@ const config = {
     kit: {
         adapter: adapter({
             pages: '../fs',
-            fallback: 'index.html'
+            fallback: 'index.html',
+            precompress: true
         }),
         router: {
             type: 'hash'
